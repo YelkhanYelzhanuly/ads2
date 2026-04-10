@@ -1,5 +1,5 @@
 public class MyLinkedList<T> {
-    private MyNode<T> head;
+    MyNode<T> head;
     private MyNode<T> tail;
     private int size = 0;
 
@@ -11,6 +11,10 @@ public class MyLinkedList<T> {
             this.data = data;
             this.next = null;
         }
+    }
+
+    public boolean isEmpty() {
+        return head == null;
     }
 
     public void addhead(T newitem) {
@@ -59,6 +63,23 @@ public class MyLinkedList<T> {
         size--;
     }
 
+    public void delhead() {
+        if (head == null) {
+            System.out.println("No elements");
+            return;
+        }
+        head = head.next;
+        if (head == null) {
+            tail = null;
+        }
+    }
+
+    public void clear() {
+        head = null;
+        tail = null;
+        size = 0;
+    }
+
     public void getall() {
         if (head == null) {
             System.out.println("No elements");
@@ -94,7 +115,7 @@ public class MyLinkedList<T> {
         }
     }
 
-    public void insert(T item, int index) {
+    public void append(T item, int index) {
         if (index < 0 || index > size) {
             System.out.println("Index Out of Bounds");
             return;
@@ -175,5 +196,31 @@ public class MyLinkedList<T> {
         }
         tail = oldhead;
         head = prev;
+    }
+
+    public void onlyODD() {
+        if (isEmpty()) { throw new RuntimeException("Empty"); }
+        while (head != null && isEven(head.data)) {
+            delhead();
+        }
+        MyNode<T> current = head;
+        while (current != null && current.next != null) {
+            if (isEven(current.next.data)) {
+                current.next = current.next.next;
+                size--;
+                if (current.next == null) {
+                    tail = current;
+                }
+            }
+            current = current.next;
+        }
+    }
+
+    public boolean isEven(T data) {
+        if (isEmpty()) { throw new RuntimeException("Empty"); }
+        if (data instanceof Number) {
+            return ((Number) data).longValue() % 2 == 0;
+        }
+        return false;
     }
 }

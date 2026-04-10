@@ -7,7 +7,7 @@ public class Stack<T> {
 
     private Node<T> top;
 
-    public void insert(T data) {
+    public void appends(T data) {
         Node newnode = new Node(data);
         newnode.next = top;
         top = newnode;
