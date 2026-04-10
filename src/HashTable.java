@@ -23,7 +23,6 @@ public class HashTable {
         return Math.abs(key) % size;
     }
 
-    // 7. Добавление элемента
     public void put(int key, int value) {
         int index = hash(key);
         Node curr = table[index];
@@ -39,7 +38,6 @@ public class HashTable {
         table[index] = newNode;
     }
 
-    // 7. Удаление элемента
     public void remove(int key) {
         int index = hash(key);
         Node curr = table[index];
@@ -55,7 +53,6 @@ public class HashTable {
         }
     }
 
-    // Вывод на экран
     public void display() {
         for (int i = 0; i < size; i++) {
             System.out.print("Bucket " + i + ": ");
@@ -68,7 +65,6 @@ public class HashTable {
         }
     }
 
-    // 8. Сумма элементов
     public int sum() {
         int total = 0;
         for (Node bucket : table) {
@@ -81,7 +77,6 @@ public class HashTable {
         return total;
     }
 
-    // 9. Max и Min
     public void printMinMax() {
         int min = Integer.MAX_VALUE;
         int max = Integer.MIN_VALUE;
@@ -100,7 +95,6 @@ public class HashTable {
         else System.out.println("Table is empty");
     }
 
-    // 10. Четные и нечетные
     public void printEvenOdd() {
         System.out.print("Even: ");
         iterateAndPrint(true);
